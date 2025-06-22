@@ -4,7 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@/lib/utils.js";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import { Link } from "react-router-dom";

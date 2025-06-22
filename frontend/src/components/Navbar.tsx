@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HoveredLink, Menu, MenuItem } from "./ui/navbar-menu";
-import { cn } from "@/lib/utils.js";
+import { cn } from "@/lib/utils";
 import { Shield, Home } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
