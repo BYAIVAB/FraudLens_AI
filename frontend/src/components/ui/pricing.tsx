@@ -4,13 +4,15 @@ import { buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
-// import confetti from "canvas-confetti";
-// import NumberFlow from "@number-flow/react";
+
+// Simple utility function to avoid import issues
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ');
+};
 
 interface PricingPlan {
   name: string;

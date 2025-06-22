@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HoveredLink, Menu, MenuItem } from "./ui/navbar-menu";
-import { cn } from "@/lib/utils";
 import { Shield, Home } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
+
+// Simple utility function to avoid import issues
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ');
+};
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
