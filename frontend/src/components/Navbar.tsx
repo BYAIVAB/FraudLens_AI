@@ -58,7 +58,7 @@ export function Navbar({ className }: { className?: string }) {
       ref={navRef}
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        { "bg-[#000000]/80 backdrop-blur-sm shadow-lg": scrolled },
+        scrolled ? "bg-[#000000]/80 backdrop-blur-sm shadow-lg" : "",
         className
       )}
     >
