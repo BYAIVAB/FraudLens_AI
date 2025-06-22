@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+// Use Render backend URL in production, fallback to local for development
+const baseURL = import.meta.env.PROD 
+  ? 'https://fraud-detection-api.onrender.com/api'
+  : '/api';
+
 const api = axios.create({
-  baseURL: '/api', // Use relative path for production
+  baseURL: baseURL,
 });
 
 export const checkFraud = async (data) => {

@@ -4,5 +4,10 @@ set -o errexit
 
 pip install -r requirements.txt
 
-# Train the model if it doesn't exist
-python models/train_model.py 
+# Only train the model if it doesn't exist
+if [ ! -f "data/fraud_detection_model.pkl" ]; then
+    echo "Training machine learning model..."
+    python models/train_model.py
+else
+    echo "Model already exists, skipping training..."
+fi 

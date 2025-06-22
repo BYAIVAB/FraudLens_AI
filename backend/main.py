@@ -6,20 +6,35 @@ import uvicorn
 
 app = FastAPI(title="Fraud Detection API")
 
+# Get environment variables
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "*")
+
+# Parse CORS origins if provided
+if CORS_ORIGINS != "*":
+    origins = [origin.strip() for origin in CORS_ORIGINS.split(",")]
+else:
+    origins = ["*"]
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-app.include_router(api_router)
+# Include API routes with /api prefix
+app.include_router(api_router, prefix="/api")
 
 @app.get("/", summary="Root endpoint to check API status")
 def read_root():
-    return {"status": "API is running"}
+    return {
+        "status": "API is running",
+        "environment": ENVIRONMENT,
+        "message": "Fraud Detection API is operational"
+    }
 
 if __name__ == "__main__":
     # Get port from environment variable (for Render) or default to 8000
@@ -30,6 +45,6 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=port,
-        reload=False  # Disable reload in production
+        reload=(ENVIRONMENT == "development")  # Only reload in development
     ) 
 
