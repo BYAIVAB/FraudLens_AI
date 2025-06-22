@@ -1,8 +1,12 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils";
+
+// Simple utility function to avoid import issues
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ')
+}
 
 const transition = {
   type: "spring",

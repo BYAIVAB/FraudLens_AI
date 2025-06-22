@@ -1,7 +1,11 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+
+// Simple utility function to avoid import issues
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ')
+}
 
 export const LampContainer = ({
   children,
