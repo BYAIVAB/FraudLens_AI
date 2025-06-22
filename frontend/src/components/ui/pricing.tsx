@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
-import confetti from "canvas-confetti";
+// import confetti from "canvas-confetti";
 // import NumberFlow from "@number-flow/react";
 
 interface PricingPlan {
@@ -42,29 +42,16 @@ export function Pricing({
   const handleToggle = (checked: boolean) => {
     setIsMonthly(!checked);
     if (checked && switchRef.current) {
-      const rect = switchRef.current.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-
-      confetti({
-        particleCount: 50,
-        spread: 60,
-        origin: {
-          x: x / window.innerWidth,
-          y: y / window.innerHeight,
-        },
-        colors: [
-          "hsl(var(--primary))",
-          "hsl(var(--accent))",
-          "hsl(var(--secondary))",
-          "hsl(var(--muted))",
-        ],
-        ticks: 200,
-        gravity: 1.2,
-        decay: 0.94,
-        startVelocity: 30,
-        shapes: ["circle"],
-      });
+      // Simple toggle effect without confetti
+      console.log("Switched to annual pricing!");
+      
+      // Optional: Add a simple animation effect
+      switchRef.current.style.transform = "scale(1.1)";
+      setTimeout(() => {
+        if (switchRef.current) {
+          switchRef.current.style.transform = "scale(1)";
+        }
+      }, 200);
     }
   };
 
