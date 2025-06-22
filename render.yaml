@@ -1,0 +1,22 @@
+services:
+  # Backend API Service
+  - type: web
+    name: fraud-detection-api
+    env: python
+    plan: free
+    buildCommand: cd backend && chmod +x build.sh && ./build.sh
+    startCommand: cd backend && chmod +x start.sh && ./start.sh
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16
+
+  # Frontend Static Site
+  - type: web
+    name: fraud-detection-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 18 
