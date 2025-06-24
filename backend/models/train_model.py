@@ -9,6 +9,16 @@ import os
 from datetime import datetime, timedelta
 import random
 
+"""
+NOTE: This script generates a dummy model for demonstration purposes.
+For production use, the real LightGBM model from the FraudLens-XAI GitHub repository
+is used instead. The real model files are:
+- models_data/lightgbm_model.pkl (LightGBM model)
+- models_data/customer_loc.pkl (Location encoder)
+
+To use the real model, run: python download_models.py
+"""
+
 def generate_synthetic_fraud_data(n_samples=10000):
     """
     Generate synthetic fraud detection data for demonstration.
@@ -107,7 +117,12 @@ def preprocess_data(df):
 def train_fraud_detection_model():
     """
     Train a fraud detection model and save it along with preprocessing components.
+    NOTE: This is a dummy model for demonstration. Use the real LightGBM model instead.
     """
+    print("WARNING: This generates a dummy model for demonstration purposes.")
+    print("For production use, the real LightGBM model from FraudLens-XAI is used.")
+    print("=" * 60)
+    
     print("Generating synthetic fraud detection data...")
     df = generate_synthetic_fraud_data(n_samples=10000)
     
@@ -171,6 +186,8 @@ def train_fraud_detection_model():
     print("- data/scaler.pkl") 
     print("- data/label_encoder.pkl")
     print("- data/feature_names.pkl")
+    
+    print("\nNOTE: This is a dummy model. For production, use the real LightGBM model!")
     
     return model, scaler, label_encoder, feature_names
 

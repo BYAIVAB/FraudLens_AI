@@ -20,7 +20,7 @@ const TransactionForm = () => {
     setLoading(true);
     setPredictionResult(null);
     try {
-      const response = await axios.post('http://127.0.0.1:8000/predict', data);
+      const response = await axios.post('http://127.0.0.1:8000/api/predict', data);
       setPredictionResult(response.data);
       console.log('Prediction:', response.data);
     } catch (error) {

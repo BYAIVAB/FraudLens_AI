@@ -1,4 +1,4 @@
-# 🚀 Fraud Detection Application
+# 🚀 FraudLens AI - Real Model Integration
 
 A modern full-stack web application for detecting fraudulent transactions using machine learning. Built with React (frontend) and FastAPI (backend).
 
@@ -7,183 +7,165 @@ A modern full-stack web application for detecting fraudulent transactions using 
 ![React](https://img.shields.io/badge/React-18+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green)
 
+---
+
 ## 🎯 Overview
 
-This application provides a comprehensive solution for fraud detection in financial transactions. It features a machine learning model trained on synthetic transaction data and provides an intuitive web interface for users to upload transaction data and receive real-time fraud predictions.
+FraudLens AI now uses a **real LightGBM model** (from [FraudLens-XAI](https://github.com/sourize/FraudLens-XAI.git)) for production-grade fraud detection. The backend expects **city names** (not country codes) for the `customer_location` field.
+
+- **City-based location encoding**: 99,135 supported cities
+- **Production-ready LightGBM model**: Downloaded automatically
+- **Easy setup**: One command to fetch model files
+
+---
 
 ## ✨ Key Features
+- 🔎 **Real-time Fraud Detection**: Instant analysis of transaction data
+- 🤖 **LightGBM Model**: Real, production-grade model
+- 🏙️ **City-based Location**: Use city names for location encoding
+- 📊 **Probability Scores**: Risk assessment for each transaction
+- 🎨 **Modern UI/UX**: Responsive, dark/light theme
+- 🔒 **Secure API**: RESTful, CORS-enabled, proxy support
 
-- 🔍 **Real-time Fraud Detection**: Instant analysis of transaction data
-- 🤖 **Machine Learning Powered**: Pre-trained Random Forest classifier
-- 📊 **Interactive Dashboard**: Visualize transaction data and results(to be implemented)
-- 🎨 **Modern UI/UX**: Responsive design with dark/light theme support
-- 📱 **Mobile Friendly**: Works seamlessly on all devices
-- 🔒 **Secure API**: RESTful API with proper validation
-- 📈 **Scalable Architecture**: Separate frontend and backend services
+---
 
-## 🏗️ Architecture
-
-```
-┌─────────────────┐    HTTP/JSON    ┌─────────────────┐
-│   React Frontend │ ◄─────────────► │  FastAPI Backend │
-│   (Port 5173)    │                 │   (Port 8000)    │
-└─────────────────┘                 └─────────────────┘
-                                              │
-                                              ▼
-                                    ┌─────────────────┐
-                                    │  ML Model Files │
-                                    │  (Pickle Files) │
-                                    └─────────────────┘
-```
-
-## 🚀 Quick Start
+## ⚡ Quick Start
 
 ### Prerequisites
-
 - **Node.js** (v18 or higher)
 - **Python** (v3.8 or higher)
 - **Git**
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <your-repository-url>
-   cd HackFest
-   ```
-
-2. **Set up the backend**
-   ```bash
-   cd backend
-   python -m venv venv
-   
-   # Activate virtual environment
-   # Windows:
-   venv\Scripts\activate
-   # macOS/Linux:
-   source venv/bin/activate
-   
-   pip install -r requirements.txt
-   python models/train_model.py
-   ```
-
-3. **Set up the frontend**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-
-4. **Run the application**
-   ```bash
-   # Terminal 1 - Backend (from backend directory)
-   python main.py
-   
-   # Terminal 2 - Frontend (from frontend directory)
-   npm run dev
-   ```
-
-5. **Access the application**
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:8000
-   - API Documentation: http://localhost:8000/docs
-
-## 📁 Project Structure
-
-```
-HackFest/
-├── 📁 backend/                 # FastAPI backend
-│   ├── 📁 api/                # API routes and schemas
-│   ├── 📁 data/               # ML model files
-│   ├── 📁 models/             # ML model logic
-│   ├── main.py               # FastAPI app entry point
-│   └── requirements.txt      # Python dependencies
-├── 📁 frontend/              # React frontend
-│   ├── 📁 src/
-│   │   ├── 📁 components/    # React components
-│   │   ├── 📁 pages/         # Page components
-│   │   ├── 📁 services/      # API services
-│   │   └── 📁 theme/         # UI theme config
-│   ├── package.json          # Node.js dependencies
-│   └── vite.config.ts        # Vite configuration
-└── README.md                 # This file
-```
-
-## 🔧 Technology Stack
-
-### Backend
-- **FastAPI** - Modern Python web framework
-- **Scikit-learn** - Machine learning library
-- **Pandas** - Data manipulation
-- **Pydantic** - Data validation
-- **Uvicorn** - ASGI server
-
-### Frontend
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **Shadcn/ui** - Component library
-- **Framer Motion** - Animation library
-- **React Router** - Client-side routing
-
-## 🌐 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/predict` | Predict fraud for transaction data |
-| `GET` | `/explain/{id}` | Get explanation for prediction |
-| `GET` | `/health` | Health check endpoint |
-
-## 🎨 UI Components
-
-The application includes several custom components:
-- **Dashboard** - Main transaction analysis interface(to be implemented)
-- **Pricing Page** - Subscription plans with animations
-- **Navigation** - Responsive navigation bar
-- **Theme Switcher** - Dark/light mode toggle
-- **Transaction Form** - Data input interface
-
-## 🔒 Security Features
-
-- Input validation using Pydantic models
-- CORS configuration for cross-origin requests
-- Secure file handling for model loading
-- Error handling and logging
-
-## 📊 Machine Learning Model
-
-- **Algorithm**:  LightBGM
-- **Features**: 10 synthetic transaction features
-- **Training Data**: Generated synthetic dataset
-- **Model Files**: Stored as pickle files for easy loading
-
-## 🚀 Deployment
-
-The application can be deployed to various platforms:
-
-### Vercel (Recommended)
-- Frontend: Automatic deployment from GitHub
-- Backend: Serverless functions with Vercel
-
-### Docker
+### 1. Clone the repository
 ```bash
-# Build and run with Docker Compose
-docker-compose up --build
+git clone <your-repository-url>
+cd FraudLens_AI
 ```
 
-### Manual Deployment
-- Frontend: Build with `npm run build`
-- Backend: Deploy to any Python hosting service
+### 2. Backend Setup
+```bash
+cd backend
+python -m venv venv
+# Activate venv (Windows: venv\Scripts\activate, macOS/Linux: source venv/bin/activate)
+pip install -r requirements.txt
+# Download the real LightGBM model and encoder
+ython download_models.py
+# Start the backend
+python main.py
+```
 
-## 🤝 Contributing
+### 3. Frontend Setup
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
 
-We welcome contributions! Please follow these steps:
+- The frontend will run on `http://localhost:8080` (or `8081` if 8080 is busy)
+- The backend will run on `http://localhost:8000`
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+---
+
+## 🏗️ Architecture
+
+```
+Frontend (React, Vite, Port 8080/8081) --/api--> Vite Proxy --> Backend (FastAPI, Port 8000) --> LightGBM Model
+```
+- All API calls use `/api` prefix and are proxied to the backend
+- **Location field**: Use city names (e.g., "Aaronberg", "Aaronborough", ...)
+
+---
+
+## 🛠️ Troubleshooting
+
+- **404 on /predict**: Make sure you POST to `/api/predict`, not `/predict`.
+- **CORS errors**: The Vite proxy (see `frontend/vite.config.ts`) routes `/api` to the backend, avoiding CORS issues.
+- **Port in use**: If 8080 is busy, Vite will use 8081. The proxy will still work.
+- **Favicon 404**: This is harmless. Add a `favicon.ico` to `frontend/public/` to remove the warning.
+- **Model not found**: Run `python download_models.py` in the backend directory.
+
+---
+
+## 📚 Documentation
+- **Integration details**: See [`INTEGRATION_COMPLETE.md`](./INTEGRATION_COMPLETE.md)
+- **Backend API docs**: http://localhost:8000/docs
+- **Frontend usage**: See `frontend/README.md`
+
+---
+
+## 🧩 Project Structure
+
+```
+FraudLens_AI/
+├── backend/
+│   ├── api/
+│   ├── models/
+│   ├── models_data/         # Real model files (auto-downloaded)
+│   ├── main.py
+│   ├── download_models.py   # Download script for model files
+│   └── requirements.txt
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   ├── vite.config.ts       # Proxy config for /api
+│   └── package.json
+├── INTEGRATION_COMPLETE.md  # Full integration summary
+└── README.md
+```
+
+---
+
+## 🐙 GitHub Workflow
+
+### 1. Fork the Repository
+- Click the **Fork** button at the top right of the [GitHub repo](https://github.com/sourize/FraudLens_AI.git) page.
+
+### 2. Clone Your Fork
+```bash
+git clone https://github.com/<your-username>/FraudLens_AI.git
+cd FraudLens_AI
+```
+
+### 3. Set Up Remotes
+```bash
+git remote add upstream https://github.com/sourize/FraudLens_AI.git
+```
+
+### 4. Create a Feature Branch
+```bash
+git checkout -b feature/your-feature-name
+```
+
+### 5. Make Your Changes
+- Follow the setup instructions in the README to run the backend and frontend locally.
+- Make your code or documentation changes.
+
+### 6. Commit and Push
+```bash
+git add .
+git commit -m "Describe your changes"
+git push origin feature/your-feature-name
+```
+
+### 7. Open a Pull Request
+- Go to your fork on GitHub.
+- Click **Compare & pull request**.
+- Fill in the PR template and submit.
+
+### 8. Sync with Upstream (Optional)
+To keep your fork up to date:
+```bash
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+```
+
+---
+
+## 🎉 Congratulations!
+
+FraudLens AI is now running with a **real, production-ready LightGBM model**. For full details, see [`INTEGRATION_COMPLETE.md`](./INTEGRATION_COMPLETE.md).
 
 
 

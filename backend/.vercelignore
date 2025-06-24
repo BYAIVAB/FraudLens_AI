@@ -1,7 +1,0 @@
-# Ignore virtual environment
-venv/
-__pycache__/
-
-# Ignore model training files not needed for production API
-models/train_model.py
-train_model.py 

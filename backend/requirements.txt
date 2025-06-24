@@ -4,4 +4,6 @@ scikit-learn
 pydantic
 joblib
 python-multipart
-pandas 
+pandas
+lightgbm 
+
