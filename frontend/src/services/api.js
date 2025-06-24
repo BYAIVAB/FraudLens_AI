@@ -1,11 +1,9 @@
 import axios from 'axios';
 
 // Use Render backend URL in production, fallback to local for development
-// const baseURL = import.meta.env.PROD 
-//   ? 'https://localhost:8000/api'
-//   : '/api';
-
-const baseURL = 'http://localhost:8000/';
+const baseURL = import.meta.env.PROD
+  ? import.meta.env.VITE_API_URL
+  : '/api';
 
 const api = axios.create({
   baseURL: baseURL,
